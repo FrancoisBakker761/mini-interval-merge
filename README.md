@@ -38,3 +38,10 @@ an interval.
 
 Each function accepts any iterable of `Interval` objects or `(start, end)`
 pairs and returns a tuple of `Interval` objects.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
